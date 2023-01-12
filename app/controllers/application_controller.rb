@@ -1,14 +1,14 @@
 class ApplicationController < ActionController::Base
   include JsonWebToken
-
+  protect_from_forgery with: :null_session
   before_action :authenticate_request
 
   private
 
   def authenticate_request
-    header = request.headers ['Authorization']
+    header = request.headers['Authorization']
 
-    header = header.chars.last if header
+    header = header.split(" ").last if header
 
     decoded = jwt_decode(header)
 

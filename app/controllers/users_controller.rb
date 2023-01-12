@@ -1,4 +1,4 @@
-class UsersController < Application Controller
+class UsersController < ApplicationController
     skip_before_action :authenticate_request, only: [:create]
     before_action :set_user, only: [:show, :destroy]
     
@@ -44,6 +44,6 @@ class UsersController < Application Controller
     end
 
     def set_user
-        @user User.find(params[:id])
+        @user = User.find(params[:id])
     end
 end
